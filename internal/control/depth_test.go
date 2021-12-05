@@ -1,4 +1,4 @@
-package aoc
+package control
 
 import (
 	"bufio"
@@ -88,7 +88,7 @@ func Test_Day1P2Input(t *testing.T) {
 }
 
 func load() []int {
-	file, _ := os.Open("day1_input.txt")
+	file, _ := os.Open("../../test/day1_input.txt")
 	defer file.Close()
 	var lines []int
 	scanner := bufio.NewScanner(file)

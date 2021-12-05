@@ -1,4 +1,4 @@
-package aoc
+package maps
 
 import (
 	"bufio"
@@ -89,7 +89,7 @@ func Test_CalcDay5P2(t *testing.T) {
 }
 
 func load_day5() []string {
-	file, _ := os.Open("day5_input.txt")
+	file, _ := os.Open("../../test/day5_input.txt")
 	defer file.Close()
 	var lines []string
 	scanner := bufio.NewScanner(file)

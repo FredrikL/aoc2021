@@ -1,4 +1,4 @@
-package aoc
+package control
 
 func DepthIncreseCount(mesurements []int) int {
 	sum := 0

@@ -91,7 +91,7 @@ func Test_Day3P3(t *testing.T) {
 }
 
 func load_day3() []string {
-	file, _ := os.Open("day3_input.txt")
+	file, _ := os.Open("../test/day3_input.txt")
 	defer file.Close()
 	var lines []string
 	scanner := bufio.NewScanner(file)
