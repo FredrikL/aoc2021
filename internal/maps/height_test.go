@@ -49,8 +49,6 @@ func Test_FindLowPoints(t *testing.T) {
 
 	result := ReturnLowPoints(input)
 
-	// assert.Equal(t, []int{1, 0, 5, 5}, result)
-
 	r := []int{}
 	for _, v := range result {
 		r = append(r, v.value)
@@ -123,13 +121,6 @@ func Test_FindSumOfThreeLargest(t *testing.T) {
 
 	result := ReturnLowPoints(input)
 
-	for i := 0; i < len(input); i++ {
-		for j := 0; j < len(input[i]); j++ {
-			if input[i][j] != 9 {
-				input[i][j] = 0
-			}
-		}
-	}
 	results := []int{}
 	for _, r := range result {
 		size := FindBasinSize(input, r.x, r.y)
@@ -149,13 +140,6 @@ func Test_Day9P2(t *testing.T) {
 
 	result := ReturnLowPoints(input)
 
-	for i := 0; i < len(input); i++ {
-		for j := 0; j < len(input[i]); j++ {
-			if input[i][j] != 9 {
-				input[i][j] = 0
-			}
-		}
-	}
 	results := []int{}
 	for _, r := range result {
 		size := FindBasinSize(input, r.x, r.y)
