@@ -205,5 +205,5 @@ lg-iw`
 
 	paths := TraverseMapP2([]string{}, "start", chart)
 
-	assert.Equal(t, 3230, paths)
+	assert.Equal(t, 83475, paths)
 }
