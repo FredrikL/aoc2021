@@ -2,15 +2,22 @@ package aoc
 
 import "strings"
 
-func ParsePolyInput(input string) (string, map[string]string) {
+func ParsePolyInput(input string) (string, map[string]string, map[string]int) {
 	parts := strings.Split(input, "\n")
 	res := make(map[string]string)
+	counts := make(map[string]int)
+	template := parts[0]
 	for i := 2; i < len(parts); i++ {
 		poly := strings.Split(parts[i], " -> ")
 		res[poly[0]] = poly[1]
 	}
 
-	return parts[0], res
+	for i := 0; i < (len(template) - 1); i++ {
+		k := template[i:(i + 2)]
+		counts[k]++
+	}
+
+	return parts[0], res, counts
 }
 
 func StepPoly(current string, lookup map[string]string) string {

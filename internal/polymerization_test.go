@@ -2,6 +2,7 @@ package aoc
 
 import (
 	"sort"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -130,7 +131,7 @@ CO -> N
 KS -> K`
 
 func Test_ShouldHanldeD14Example(t *testing.T) {
-	start, mp := ParsePolyInput(exampleInputD14)
+	start, mp, _ := ParsePolyInput(exampleInputD14)
 
 	assert.Equal(t, "NNCB", start)
 	// assert.Equal(t, "NNCB", mp)
@@ -166,7 +167,7 @@ func Test_ShouldHanldeD14Example(t *testing.T) {
 }
 
 func Test_ShouldHanldeD14P1(t *testing.T) {
-	start, mp := ParsePolyInput(day14Input)
+	start, mp, _ := ParsePolyInput(day14Input)
 
 	assert.Equal(t, "KKOSPHCNOCHHHSPOBKVF", start)
 
@@ -175,15 +176,110 @@ func Test_ShouldHanldeD14P1(t *testing.T) {
 	for i := 0; i < 10; i++ {
 		step = StepPoly(step, mp)
 	}
-	//	assert.Len(t, step, 3073)
 
 	c := CountPloy(step)
-	//assert.Equal(t, 1749, c["B"])
 
 	ints := []int{}
 	for _, v := range c {
 		ints = append(ints, v)
 	}
 	sort.Ints(ints)
+	assert.Equal(t, 2321, ints[len(ints)-1]-ints[0])
+}
+
+func Test_ShouldHanldeD14P1P2Way(t *testing.T) {
+	template, mp, counts := ParsePolyInput(exampleInputD14)
+
+	letterCount := make(map[string]int)
+
+	assert.Equal(t, "NNCB", template)
+
+	for i := 0; i < 10; i++ {
+		newcounts := make(map[string]int)
+		for key, c := range counts {
+			n := mp[key]
+			parts := strings.Split(key, "")
+			newcounts[parts[0]+n] += c
+			newcounts[n+parts[1]] += c
+			letterCount[n] += c
+		}
+		counts = newcounts
+	}
+
+	p := strings.Split(template, "")
+	for _, v := range p {
+		letterCount[v]++
+	}
+
+	ints := []int{}
+	for _, v := range letterCount {
+		ints = append(ints, v)
+	}
+	sort.Ints(ints)
 	assert.Equal(t, 1588, ints[len(ints)-1]-ints[0])
+
+}
+
+func Test_ShouldHanldeD14ExampleCombinations(t *testing.T) {
+	template, mp, counts := ParsePolyInput(exampleInputD14)
+
+	letterCount := make(map[string]int)
+
+	assert.Equal(t, "NNCB", template)
+
+	for i := 0; i < 40; i++ {
+		newcounts := make(map[string]int)
+		for key, c := range counts {
+			n := mp[key]
+			parts := strings.Split(key, "")
+			newcounts[parts[0]+n] += c
+			newcounts[n+parts[1]] += c
+			letterCount[n] += c
+		}
+		counts = newcounts
+	}
+
+	p := strings.Split(template, "")
+	for _, v := range p {
+		letterCount[v]++
+	}
+
+	ints := []int{}
+	for _, v := range letterCount {
+		ints = append(ints, v)
+	}
+	sort.Ints(ints)
+	assert.Equal(t, 2188189693529, ints[len(ints)-1]-ints[0])
+
+}
+
+func Test_ShouldHanldeD14P2(t *testing.T) {
+	template, mp, counts := ParsePolyInput(day14Input)
+
+	letterCount := make(map[string]int)
+
+	for i := 0; i < 40; i++ {
+		newcounts := make(map[string]int)
+		for key, c := range counts {
+			n := mp[key]
+			parts := strings.Split(key, "")
+			newcounts[parts[0]+n] += c
+			newcounts[n+parts[1]] += c
+			letterCount[n] += c
+		}
+		counts = newcounts
+	}
+
+	p := strings.Split(template, "")
+	for _, v := range p {
+		letterCount[v]++
+	}
+
+	ints := []int{}
+	for _, v := range letterCount {
+		ints = append(ints, v)
+	}
+	sort.Ints(ints)
+	assert.Equal(t, 2399822193707, ints[len(ints)-1]-ints[0])
+
 }
