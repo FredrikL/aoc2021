@@ -119,7 +119,6 @@ func Test_LoadExamplData(t *testing.T) {
 
 	assert.Len(t, risk, 10)
 	assert.Len(t, risk[1], 10)
-	assert.Equal(t, 0, risk[1][0])
 }
 
 func Test_WalkExample(t *testing.T) {
