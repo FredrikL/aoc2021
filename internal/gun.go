@@ -117,19 +117,23 @@ func WillHit(pos Position, v Velocity, target Target) (bool, Position) {
 	return hit, pos
 }
 
-func FindMaxY(target Target) int {
+func FindMaxY(target Target) (int, int) {
 	bestPos := Position{}
+	hitCount := 0
 
 	for i := 1; i < 400; i++ {
-		for j := 0; j < 400; j++ {
+		for j := -300; j < 400; j++ {
 			pos := Position{}
 			vel := Velocity{i, j}
 			hit, endPos := WillHit(pos, vel, target)
+			if hit {
+				hitCount += 1
+			}
 			if hit && endPos.maxY > bestPos.maxY {
 				bestPos = endPos
 			}
 		}
 	}
 
-	return bestPos.maxY
+	return bestPos.maxY, hitCount
 }

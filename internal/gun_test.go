@@ -66,16 +66,18 @@ func Test_ShootFirstExample(t *testing.T) {
 func Test_FindMaxY(t *testing.T) {
 	target := ParseTargetArea("target area: x=20..30, y=-10..-5")
 
-	maxY := FindMaxY(target)
+	maxY, hitCount := FindMaxY(target)
 
 	assert.Equal(t, 45, maxY)
+	assert.Equal(t, 112, hitCount)
 }
 
 func Test_FindMaxYDay17P1(t *testing.T) {
 	// Brute force best force! :D
 	target := ParseTargetArea("target area: x=288..330, y=-96..-50")
 
-	maxY := FindMaxY(target)
+	maxY, hitCount := FindMaxY(target)
 
-	assert.Equal(t, 45, maxY)
+	assert.Equal(t, 4560, maxY)
+	assert.Equal(t, 112, hitCount)
 }
