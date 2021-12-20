@@ -79,5 +79,5 @@ func Test_FindMaxYDay17P1(t *testing.T) {
 	maxY, hitCount := FindMaxY(target)
 
 	assert.Equal(t, 4560, maxY)
-	assert.Equal(t, 112, hitCount)
+	assert.Equal(t, 3344, hitCount)
 }
